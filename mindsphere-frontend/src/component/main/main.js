@@ -3,7 +3,8 @@ import Expertise from '../expertise/expertise'
 
 const MainBody = () => {
   return (
-    <Expertise />    
+    <Expertise />
+
   )
 }
 
