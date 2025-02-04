@@ -1,0 +1,17 @@
+nav{
+    background: #b9ecff;
+    color: black;
+    padding: 30px;
+}
+
+li{
+    display: inline;
+    margin-right: 50px;
+    align-items: center;
+    font-weight: 600;
+}
+
+.login-btn{
+    background: transparent;
+    outline: 2px solid black;
+}
