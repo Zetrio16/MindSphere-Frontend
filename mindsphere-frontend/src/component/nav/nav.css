@@ -1,7 +1,7 @@
 nav{
-    background: #b9ecff;
+    background: #f6f6f6;
     color: black;
-    padding: 30px;
+    padding: 20px;
 }
 
 li{
@@ -17,6 +17,11 @@ li{
 }
 
 .logo-container{
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
+}
+
+.logo-container img{
+    height: 100%;
+    width: 100%;
 }

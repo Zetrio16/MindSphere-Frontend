@@ -1,5 +1,6 @@
 import React from "react";
-import "./footer.css"; // Import the CSS file
+import "./footer.css"; 
+import logo from '../../images/mindSphere-logo.png'
 
 const Footer = () => {
     return (
@@ -8,10 +9,7 @@ const Footer = () => {
 
                 <div className="col-4">
                     <div className="footer-logo">
-                        <img
-                            src="/images/logo.png"
-                            class="img-fluid rounded-top"
-                            alt="Logo" />
+                        <img src={logo} alt="Logo" />
                     </div>
                 </div>
 
