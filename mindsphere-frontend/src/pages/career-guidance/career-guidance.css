@@ -1,0 +1,81 @@
+.career-guidance-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.career-guidance-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 3rem;
+}
+
+.tests-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.test-card {
+    background-color: #90e0f0;
+    border-radius: 15px;
+    padding: 2rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+}
+
+.test-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-variant: small-caps;
+}
+
+.test-description {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.start-test-btn {
+    background-color: #18606f;
+    color: white;
+    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 70%;
+    margin: auto;
+}
+
+.start-test-btn:hover,
+.start-test-btn:focus {
+    background-color: transparent;
+    outline: 2px solid #18606f;
+    color: #18606f;
+    font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+    .tests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .career-guidance-title {
+        font-size: 2rem;
+    }
+
+    .tests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .test-card {
+        min-height: auto;
+    }
+}

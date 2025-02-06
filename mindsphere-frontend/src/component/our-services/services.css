@@ -16,7 +16,7 @@ h2{
 }
 
 button{
-    background: #00b4d8;
+    background: #18606f;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -27,7 +27,10 @@ button{
 }
 
 button:hover{
-    background: #0096c7;
+    background: transparent;
+    outline: #18606f solid 2px;
+    color: #18606f;
+    font-weight: 600;
 }
 
 .services-image{
@@ -41,7 +44,7 @@ button:hover{
 }
 
 .service-card{
-    background: #80e4f6;
+    background: #a0eaf7;
     padding: 20px;
     border-radius: 20px;
     margin-bottom: 20px;
