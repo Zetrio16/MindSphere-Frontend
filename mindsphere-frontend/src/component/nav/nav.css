@@ -7,8 +7,8 @@ nav {
 .active {
     font-weight: bold;
     text-decoration: underline;
-    text-decoration: aqua;
-    /* or any color you prefer for active links */
+    text-decoration: rgb(65, 65, 65);
+    /* or any color you prefer for active links */ 
 }
 
 li {
