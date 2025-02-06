@@ -1,13 +1,11 @@
-'use client'
-
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 // import { useAuth } from '../context/AuthContext'
 import './career-guidance.css'
 
 export default function CareerGuidance() {
-//   const { user, signInWithGoogle } = useAuth()
-  const navigate = useNavigate()
+
+  const navigate = useNavigate(); // useNavigate must be inside the component
 
   const tests = [
     {
@@ -30,18 +28,11 @@ export default function CareerGuidance() {
     }
   ]
 
-//   const handleTestStart = async (testPath) => {
-//     if (!user) {
-//       try {
-//         await signInWithGoogle()
-//         navigate(testPath)
-//       } catch (error) {
-//         console.error('Error signing in:', error)
-//       }
-//     } else {
-//       navigate(testPath)
-//     }
-//   }
+  const randomFunction = () => {
+    console.log("Random function");
+    if (window.confirm("Are you sure you want to start the test?"))
+      navigate("/google-form"); // Navigate to the Google Form page
+  };
 
   return (
     <div className="career-guidance-container">
@@ -54,10 +45,8 @@ export default function CareerGuidance() {
           <div key={test.id} className="test-card">
             <h2 className="test-title">{test.title}</h2>
             <p className="test-description">{test.description}</p>
-            <button 
-              className="start-test-btn"
-            //   onClick={() => handleTestStart(test.path)}
-            >
+            <button onClick={randomFunction}
+              className="start-test-btn">
               Start test
             </button>
           </div>
