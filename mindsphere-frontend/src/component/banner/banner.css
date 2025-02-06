@@ -1,0 +1,163 @@
+.page-wrapper {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.banner-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://static.wixstatic.com/media/bfe626_1005e23f523946dca9c6cba8f0fe8c06~mv2.jpg/v1/fill/w_2026,h_876,fp_0.50_0.46,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/pexels-sarah-dietz-983041-3855554.jpg");
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.banner-content {
+    position: relative;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.banner-title {
+    font-size: 4rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.banner-subtitle {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+
+.highlight {
+    color: #40bfef;
+    font-style: italic;
+}
+
+.content {
+    position: relative;
+    background: white;
+    z-index: 1;
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.content-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.service-card {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 3rem;
+    }
+
+    .banner-subtitle {
+        font-size: 1.25rem;
+    }
+
+    .content-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-title {
+        font-size: 2.5rem;
+    }
+
+    .banner-subtitle {
+        font-size: 1rem;
+    }
+
+    .content-section {
+        padding: 3rem 1rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.75rem;
+    }
+}

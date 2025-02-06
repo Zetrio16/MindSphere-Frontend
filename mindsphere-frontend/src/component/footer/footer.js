@@ -1,19 +1,20 @@
 import React from "react";
-import "./footer.css"; 
-import logo from '../../images/mindSphere-logo.png'
+import "./footer.css";
+import logo from '../../images/logo.png'
 
 const Footer = () => {
+
     return (
         <footer className="footer">
             <div className="container d-flex justify-content-between">
 
-                <div className="col-4">
+                <div className="col-2">
                     <div className="footer-logo">
                         <img src={logo} alt="Logo" />
                     </div>
                 </div>
 
-                <div className="col-8 d-flex justify-content-between">
+                <div className="col-7 d-flex justify-content-between">
                     <div className="footer-section">
                         <h3>Follow Us</h3>
                         <ul>
@@ -43,6 +44,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
+                <hr style={{ backgroundColor: 'blue' }} />
                 &copy; 2025 by mindsphere. All rights reserved.
             </div>
         </footer>

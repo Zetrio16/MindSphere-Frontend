@@ -1,0 +1,159 @@
+.services-container {
+    width: 97%;
+    margin: auto;
+    min-height: 100vh;
+}
+
+.services-header {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    background-image: url("https://static.wixstatic.com/media/11062b_f74c7dec01f94680a21f45d688fe5b76~mv2.jpg/v1/fill/w_1824,h_469,fp_0.50_0.62,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Child%20Therapy%20Office.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.services-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.services-title {
+    position: relative;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: 500;
+    z-index: 1;
+}
+
+.services-title-italic {
+    font-style: italic;
+}
+
+.services-grid {
+    max-width: 1400px;
+    margin: 50px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.service-cards {
+    background-color: #90e0f0;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+}
+
+.service-cards:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.service-content {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.service-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8vh;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.service-info {
+    padding-top: 20px;
+    border-top: 1px solid rgba(227, 227, 227, 0.86);
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+}
+
+.service-duration,
+.service-price {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.book-now-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #043b47;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.book-now-btn:hover {
+    background-color: transparent;
+    outline: 2px solid #043b47;
+    color: #043b47;
+    font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-header {
+        height: 300px;
+    }
+
+    .services-title {
+        font-size: 2.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        margin-top: -30px;
+    }
+
+    .service-card {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-title {
+        font-size: 2rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-title {
+        font-size: 1.25rem;
+    }
+}

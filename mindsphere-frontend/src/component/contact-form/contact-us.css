@@ -1,0 +1,114 @@
+.form-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-image: url("https://www.joharidigital.com/wp-content/uploads/2020/01/physio-therapy-setup-Johari-Digital.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-title {
+    font-size: 35px;
+    margin: auto;
+    color: #043b47;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    color: #043b47;
+    font-size: 1rem;
+}
+
+.required {
+    color: #e53e3e;
+    margin-left: 2px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid #043b47;
+    background: transparent;
+    color: #2d3748;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom-color: #043b47;
+}
+
+.phone-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #cbd5e0;
+}
+
+.phone-prefix {
+    color: #043b47;
+    font-size: 1rem;
+    padding-right: 0.5rem;
+    height: fit-content;
+    border-right: 1px solid #737373;
+}
+
+.phone-input {
+    border-bottom: none;
+}
+
+.submit-button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 50px;
+    background: transparent;
+    background: #043b47;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: auto;
+    width: 50%;
+    transition: all 0.2s;
+}
+
+.submit-button:hover {
+    background: transparent;
+    border: 1px solid #043b47;
+    color: #043b47;
+}
+
+@media (max-width: 640px) {
+    .form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+}
