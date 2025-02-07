@@ -1,0 +1,138 @@
+.Form-box {
+    background: url("https://media.licdn.com/dms/image/v2/D4D12AQFq1gdgC3fPRA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1675369647688?e=2147483647&v=beta&t=n0tyIMQV1h7aa_NCKeNN5a0PWQgl4s3OxveqQSzcJe0");
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0px;
+}
+
+.booking-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-subtitle {
+    color: #004d4d;
+    font-size: 15px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.booking-subtitle span {
+    color: red;
+}
+
+.booking-title {
+    color: #004d4d;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #004d4d;
+    font-weight: 500;
+}
+
+.required {
+    color: red;
+    margin-left: 4px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.phone-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phone-prefix {
+    background: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #666;
+}
+
+.submit-btn {
+    background-color: #004d4d;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #003333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .booking-container {
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
+/* Input type date and time styling */
+input[type="date"],
+input[type="time"] {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 10px;
+    background: white;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* Select styling */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+    padding-right: 40px;
+}

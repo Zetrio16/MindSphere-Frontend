@@ -11,6 +11,7 @@ import CareerGuidance from './pages/career-guidance/career-guidance';
 import GoogleForm from "./pages/googleForm/google-form";
 import Contact from './pages/contact/contact';
 import Footer from './component/footer/footer';
+import BookingForm from './pages/bookingForm/bookingForm';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/google-form" element={<GoogleForm />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path='/bookingForm' element={<BookingForm />} />
       </Routes>
       <Footer />
     </Router>

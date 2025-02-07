@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
+    margin-top: 20px;
 }
 
 .services-header::before {
@@ -37,6 +38,17 @@
 }
 
 .services-title-italic {
+    font-style: italic;
+}
+
+.services-container .details {
+    background-color: rgba(216, 216, 216, 0.4);
+    border-radius: 0 0 20px 20px;
+    padding: 20px 40px;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    font-size: 18px;
     font-style: italic;
 }
 
@@ -92,9 +104,8 @@
     font-weight: 500;
 }
 
-.service-duration,
-.service-price {
-    font-size: 1rem;
+.service-charges {
+    font-size: 17px;
     opacity: 0.9;
 }
 
@@ -112,7 +123,9 @@
     margin-top: 2rem;
 }
 
-.book-now-btn:hover {
+.book-now-btn:hover,
+.book-now-btn:focus,
+.book-now-btn:active {
     background-color: transparent;
     outline: 2px solid #043b47;
     color: #043b47;

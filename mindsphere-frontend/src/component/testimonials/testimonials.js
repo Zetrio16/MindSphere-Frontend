@@ -62,8 +62,8 @@ export default function TestimonialSlider() {
     }
 
     return (
-        <div className="container text-center">
-            <h2>What Our Clients
+        <div className="testimonials container text-center">
+            <h2 id='h2'>What Our Clients
                 <span> Say </span>
             </h2>
 
@@ -89,18 +89,18 @@ export default function TestimonialSlider() {
                 {testimonials.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>
                         <div className="d-flex justify-center align-center swiper-box">
-                            <h3 className="">
+                            <h3 className="testimonial-title">
                                 {testimonial.title}
                             </h3>
-                            <p className="">
+                            <p className="testimonial-quote">
                                 {testimonial.quote}
                             </p>
                             <div className="mb-4">
                                 {[...Array(testimonial.rating)].map((_, i) => (
-                                    <Star key={i} style={{ color: '#000', fill: '#000' }} />
+                                    <Star key={i} className='star'/>
                                 ))}
                             </div>
-                            <p className="font-medium">
+                            <p className="testimonial-author">
                                 {testimonial.author}
                             </p>
                         </div>

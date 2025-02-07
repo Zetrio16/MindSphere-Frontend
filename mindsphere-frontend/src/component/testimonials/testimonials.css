@@ -1,0 +1,35 @@
+.testimonials{
+    margin-top: 80px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 30px;
+}
+
+.container #h2{
+    font-size: 50px;
+    margin-bottom: 60px;
+    color: #333;
+}
+
+.testimonial-title{
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.testimonial-quote{
+    padding: 0px 50px;
+    font-size: 17px;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.star{
+    color: #000;
+    fill: #000;
+    width: 20px;
+}
+
+.testimonial-author{
+    font-size: 18px;
+    font-variant: small-caps;
+}

@@ -90,6 +90,7 @@
     border-radius: 50px;
     background: transparent;
     background: #043b47;
+    color: white;
     font-size: 1rem;
     cursor: pointer;
     margin: auto;
@@ -99,7 +100,7 @@
 
 .submit-button:hover {
     background: transparent;
-    border: 1px solid #043b47;
+    outline: 1px solid #043b47;
     color: #043b47;
 }
 

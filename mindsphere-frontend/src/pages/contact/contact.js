@@ -38,8 +38,7 @@ export default function ContactPage() {
                                 <Phone className="contact-icon" />
                                 <div>
                                     <h4>Call Us</h4>
-                                    <p>+92 300 1234567</p>
-                                    <p>+92 321 1234567</p>
+                                    <p>+92 324 6460779</p>
                                 </div>
                             </a>
 
@@ -47,8 +46,7 @@ export default function ContactPage() {
                                 <Mail className="contact-icon" />
                                 <div>
                                     <h4>Email Us</h4>
-                                    <p>info@mindsphere.com</p>
-                                    <p>appointments@mindsphere.com</p>
+                                    <p>mindsphere360@gmail.com</p>
                                 </div>
                             </a>
 
@@ -65,8 +63,8 @@ export default function ContactPage() {
                                 <Clock className="contact-icon" />
                                 <div>
                                     <h4>Office Hours</h4>
-                                    <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                                    <p>Saturday: 10:00 AM - 2:00 PM</p>
+                                    <p>Monday - Saturday: 02:00 PM - 06:00 PM</p>
+                                    <p>Saturday: 03:00 PM - 07:00 PM</p>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +75,7 @@ export default function ContactPage() {
                                 <a href="https://facebook.com/mindsphere" target="_blank" rel="noopener noreferrer">
                                     <Facebook className="social-icon" />
                                 </a>
-                                <a href="https://instagram.com/mindsphere" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/mindspheregrw/" target="_blank" rel="noopener noreferrer">
                                     <Instagram className="social-icon" />
                                 </a>
                                 <a href="https://linkedin.com/company/mindsphere" target="_blank" rel="noopener noreferrer">
