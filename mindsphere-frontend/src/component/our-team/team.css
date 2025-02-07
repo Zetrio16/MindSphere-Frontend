@@ -53,33 +53,31 @@
 }
 
 .founder-name {
-  font-size: 1.5rem;
+  font-size: 30px;
   font-weight: 600;
   color: #1a202c;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0px;
 }
 
 .founder-role {
-  font-size: 1.125rem;
+  font-size: 17px;
   color: #4a5568;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
 .founder-qualifications {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .team-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  gap: 2rem;
+  gap: 20px;
 }
 
 .team-card {
-  background-color: white;
-  border-radius: 1rem;
+  border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease;
@@ -106,7 +104,7 @@
 }
 
 .team-info {
-  padding: 1.5rem;
+  padding: 40px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -114,26 +112,24 @@
 }
 
 .team-name {
-  font-size: 1.25rem;
+  font-size: 25px;
   font-weight: 600;
   color: #1a202c;
-  margin-bottom: 0.5rem;
 }
 
 .team-role {
   color: #4a5568;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
 
 .team-qualifications {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
 .qualification {
-  font-size: 0.875rem;
-  color: #4a5568;
+  font-size: 15px;
+  color: #28303d;
 }
 
 @media (min-width: 768px) {

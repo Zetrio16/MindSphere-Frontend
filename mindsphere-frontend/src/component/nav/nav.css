@@ -7,8 +7,6 @@ nav {
 .active {
     font-weight: bold;
     text-decoration: underline;
-    text-decoration: rgb(65, 65, 65);
-    /* or any color you prefer for active links */ 
 }
 
 li {
@@ -18,9 +16,20 @@ li {
     font-weight: 600;
 }
 
+nav li:hover {
+    text-decoration: underline;
+}
+
 .login-btn {
     background: transparent;
-    outline: 2px solid black;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.login-btn img {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
 }
 
 .logo-container {

@@ -29,7 +29,7 @@ export default function Banner() {
                 >
                     <div className="banner-content">
                         <h1 className="banner-title">
-                            Transforming <span className="highlight">Lives</span>
+                            Transforming <br/> <span className="highlight">Lives</span>
                         </h1>
                         <p className="banner-subtitle">Learning Support Center</p>
                     </div>
