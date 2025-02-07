@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./nav.css";
 import logo from "../../images/logo.png";
+import login from "../../images/login.jpg";
 
 function Nav() {
     return (
@@ -12,6 +13,11 @@ function Nav() {
                     </NavLink>
                 </div>
                 <ul className="list-unstyled d-flex justify-content-between align-items-center">
+                <li>
+                        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+                            Home
+                        </NavLink>
+                    </li>
                     <li>
                         <NavLink to="/services" className={({ isActive }) => (isActive ? "active" : "")}>
                             Services
@@ -33,7 +39,8 @@ function Nav() {
                         </NavLink>
                     </li>
                 </ul>
-                <NavLink to="/login" className="btn login-btn">
+                <NavLink to="/login" className="login-btn">
+                   <img src={login || "/placeholder.svg"} alt="Logo" />
                     Log In
                 </NavLink>
             </div>

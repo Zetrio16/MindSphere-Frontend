@@ -22,7 +22,14 @@ nav li:hover {
 
 .login-btn {
     background: transparent;
-    outline: 2px solid black;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.login-btn img {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
 }
 
 .logo-container {

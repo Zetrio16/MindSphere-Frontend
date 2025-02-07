@@ -12,12 +12,14 @@ import GoogleForm from "./pages/googleForm/google-form";
 import Contact from './pages/contact/contact';
 import Footer from './component/footer/footer';
 import BookingForm from './pages/bookingForm/bookingForm';
+import NotFound from './pages/notFound/notFound';
 
 function App() {
   return (
     <Router>
       <Nav />
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<MainBody />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/career-guidance" element={<CareerGuidance />} />
