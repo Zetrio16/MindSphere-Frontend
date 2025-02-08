@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fonts/fonts.css';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import './App.css';
 import Nav from './component/nav/nav';
@@ -13,6 +13,22 @@ import Contact from './pages/contact/contact';
 import Footer from './component/footer/footer';
 import BookingForm from './pages/bookingForm/bookingForm';
 import NotFound from './pages/notFound/notFound';
+
+// ✅ Private Route Component
+const PrivateRoute = ({ element, allowedRoles }) => {
+  const token = localStorage.getItem('token');
+  const userRole = localStorage.getItem('role');
+
+  if (!token) {
+    return <Navigate to="/login" />; // Redirect if not logged in
+  }
+
+  if (allowedRoles && !allowedRoles.includes(userRole)) {
+    return <Navigate to="/" />; // Redirect if role is unauthorized
+  }
+
+  return element;
+};
 
 function App() {
   return (
