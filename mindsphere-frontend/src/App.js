@@ -13,18 +13,27 @@ import Contact from './pages/contact/contact';
 import Footer from './component/footer/footer';
 import BookingForm from './pages/bookingForm/bookingForm';
 import NotFound from './pages/notFound/notFound';
+import { useEffect } from 'react';
 
-// ✅ Private Route Component
-const PrivateRoute = ({ element, allowedRoles }) => {
+const PrivateRoute = ({ element, allowedRoles, redirectPath = "/" }) => {
   const token = localStorage.getItem('token');
   const userRole = localStorage.getItem('role');
 
+  useEffect(() => {
+    if (!token) {
+      alert("You must be logged in to access this page.");
+    } else if (allowedRoles && !allowedRoles.includes(userRole)) {
+      alert("You do not have permission to access this page.");
+    }
+  }, [token, userRole]);
+
   if (!token) {
-    return <Navigate to="/login" />; // Redirect if not logged in
+    return <Navigate to={redirectPath} replace />;
   }
 
   if (allowedRoles && !allowedRoles.includes(userRole)) {
-    return <Navigate to="/" />; // Redirect if role is unauthorized
+    //return <Navigate to={redirectPath} replace />;
+    return <Navigate to="/"/>
   }
 
   return element;
@@ -39,10 +48,10 @@ function App() {
         <Route path="/" element={<MainBody />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/career-guidance" element={<CareerGuidance />} />
-        <Route path="/google-form" element={<GoogleForm />} />
+        <Route path="/google-form" element={<PrivateRoute element={<GoogleForm />} redirectPath="/career-guidance" />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path='/bookingForm' element={<BookingForm />} />
+        <Route path='/bookingForm' element={<PrivateRoute element={<BookingForm />}  redirectPath="/services" />} />
       </Routes>
       <Footer />
     </Router>

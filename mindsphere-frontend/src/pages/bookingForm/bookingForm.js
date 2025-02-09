@@ -1,6 +1,9 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 import "./bookingForm.css"
+
+const API_URL = process.env.REACT_APP_API_URL.trim();
 
 const BookingForm = () => {
     const [formData, setFormData] = useState({
@@ -55,6 +58,18 @@ const BookingForm = () => {
         },
     ]
 
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            setFormData((prev) => ({
+                ...prev,
+                firstName: user.name || "", // Set name from stored user data
+                email: user.email || ""     // Set email from stored user data
+            }));
+        }
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target
         setFormData((prev) => ({
@@ -63,10 +78,101 @@ const BookingForm = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(formData)
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        const token = localStorage.getItem("token");
+    
+        if (!token) {
+            alert("You must be logged in to submit a booking request.");
+            return;
+        }
+    
+        let {
+            firstName = "",
+            phone = "",
+            email = "",
+            date = "",
+            time = "",
+            selectedService = ""
+        } = formData;
+    
+        // 🚀 Trim and sanitize inputs
+        firstName = firstName.trim();
+        phone = phone.trim();
+        phone = `+92${phone}`;
+        email = email.trim();
+        date = date.trim();
+        time = time.trim();
+        selectedService = selectedService.trim();
+    
+        // ✅ Validate Required Fields
+        if (!firstName || !phone || !email || !date || !time || !selectedService) {
+            alert("All fields are required.");
+            return;
+        }
+    
+        // ✅ Validate Email Format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Invalid email format.");
+            return;
+        }
+    
+        // ✅ Strictly Validate Pakistani Phone Numbers
+        const pakistaniPhoneRegex = /^(?:\+92|0)?3[0-9]{9}$/;
+        if (!pakistaniPhoneRegex.test(phone)) {
+            alert("Invalid phone number. Use format +923XX-XXXXXXX or 03XX-XXXXXXX.");
+            return;
+        }
+    
+        // ✅ Validate Date Format (YYYY-MM-DD)
+        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+        if (!dateRegex.test(date)) {
+            alert("Invalid date format. Use YYYY-MM-DD.");
+            return;
+        }
+    
+        // ✅ Validate Time Format (HH:mm)
+        const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+        if (!timeRegex.test(time)) {
+            alert("Invalid time format. Use HH:mm (24-hour format).");
+            return;
+        }
+    
+        try {
+            const response = await axios.post(`${API_URL}/student/add-booking`, {
+                firstName,
+                phone,
+                email,
+                date,
+                time,
+                selectedService
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            });
+    
+            alert(response.data.message); // Show success message
+    
+            // Clear form data except email and firstName
+            setFormData({
+                firstName,
+                phone: "",
+                email,
+                date: "",
+                time: "",
+                selectedService: "",
+            });
+    
+        } catch (error) {
+            console.error("Booking Submission Failed:", error);
+            alert(error.response?.data?.message || "Failed to submit booking.");
+        }
+    };
+    
 
     return (
         <div className="Form-box">
@@ -95,9 +201,9 @@ const BookingForm = () => {
                         </div>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group" hidden>
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
+                        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} readOnly />
                     </div>
 
                     <div className="form-group">
