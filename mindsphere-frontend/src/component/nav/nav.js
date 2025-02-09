@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./nav.css";
 import logo from "../../images/logo.png";
-import login from "../../images/login.jpg";
+import Login from "../login/login";
 
 function Nav() {
     return (
@@ -39,10 +39,7 @@ function Nav() {
                         </NavLink>
                     </li>
                 </ul>
-                <NavLink to="/login" className="login-btn">
-                   <img src={login || "/placeholder.svg"} alt="Logo" />
-                    Log In
-                </NavLink>
+                <Login />
             </div>
         </nav>
     );
