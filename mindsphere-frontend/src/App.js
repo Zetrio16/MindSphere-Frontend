@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './fonts/fonts.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 import './App.css';
 import Nav from './component/nav/nav';
@@ -14,6 +14,14 @@ import Footer from './component/footer/footer';
 import BookingForm from './pages/bookingForm/bookingForm';
 import NotFound from './pages/notFound/notFound';
 import { useEffect } from 'react';
+
+// admin
+import AdminLayout from './component/admin/AdminLayout';
+import Dashboard from './component/admin/dashboard';
+import Users from './component/admin/users';
+import Requests from './component/admin/requests';
+import TestDetails from './component/admin/testDetails';
+import BookingDetails from './component/admin/bookingDetails';
 
 const PrivateRoute = ({ element, allowedRoles, redirectPath = "/" }) => {
   const token = localStorage.getItem('token');
@@ -32,17 +40,20 @@ const PrivateRoute = ({ element, allowedRoles, redirectPath = "/" }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(userRole)) {
-    //return <Navigate to={redirectPath} replace />;
-    return <Navigate to="/"/>
+    return <Navigate to="/" />;
   }
 
   return element;
 };
 
-function App() {
+const AppContent = () => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   return (
-    <Router>
-      <Nav />
+    <>
+      {!isAdminRoute && <Nav />}  {/* Non-admin routes ke liye Navbar */}
+      
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<MainBody />} />
@@ -51,9 +62,27 @@ function App() {
         <Route path="/google-form" element={<PrivateRoute element={<GoogleForm />} redirectPath="/career-guidance" />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path='/bookingForm' element={<PrivateRoute element={<BookingForm />}  redirectPath="/services" />} />
+        <Route path='/bookingForm' element={<PrivateRoute element={<BookingForm />} redirectPath="/services" />} />
+
+        {/* Admin Routes with Layout */}
+        <Route path="/admin/*" element={<AdminLayout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="requests" element={<Requests />} />
+          <Route path='testDetails' element={<TestDetails />} />
+          <Route path="BookingDetails" element={<BookingDetails />} />
+        </Route>
       </Routes>
-      <Footer />
+      
+      {!isAdminRoute && <Footer />}  {/* Non-admin routes ke liye Footer */}
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

@@ -1,0 +1,238 @@
+/* Admin-Nav */
+
+.admin-nav {
+    width: 100%;
+    background-color: #002c3e;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 30px 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.admin-nav h2 {
+    color: white;
+    margin-bottom: 0px;
+}
+
+/* Sidebar Nav */
+
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #77dbff;
+    color: #002c3e;
+    font-style: italic;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* Sidebar List */
+.sidebar ul {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 20px;
+    font-weight: 700;
+    transition: 0.3s ease;
+    border-bottom: 1px solid #002c3e;
+}
+
+.sidebar ul li a:hover {
+    background-color: #002c3e;
+    color: white;
+}
+
+.admin-content {
+    margin-left: 200px;
+    /* Adjust for sidebar */
+    margin-top: 80px;
+    /* Adjust for fixed header */
+    padding: 20px;
+    width: calc(100% - 200px);
+    /* Ensure content fits */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .admin-content {
+        margin-left: 180px;
+        width: calc(100% - 180px);
+    }
+
+    .sidebar ul li a {
+        font-size: 16px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .sidebar ul {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .sidebar ul li {
+        margin: 0;
+    }
+
+    .sidebar ul li a {
+        padding: 5px;
+    }
+
+    .admin-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Dashboard */
+
+.admin-dashboard {
+    margin-top: 40px;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-dashboard h2 {
+    color: #002c3e;
+    text-align: center;
+    margin: 20px;
+}
+
+.admin-dashboard .admin-text {
+    width: 70%;
+    margin: auto;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #002c3e;
+}
+
+.card {
+    background-color: #77dbff;
+    color: #002c3e;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: #002c3e;
+}
+
+/* Test Requests */
+
+.test-requests {
+    padding: 40px 20px;
+}
+
+.test-requests h2 {
+    text-align: center;
+    margin: 20px;
+    font-weight: bolder;
+}
+
+/* Users */
+
+.users {
+    padding: 20px;
+}
+
+.users h1 {
+    text-align: center;
+    margin: 20px;
+    font-weight: bolder;
+}
+
+.user-details {
+    text-align: center;
+    margin: 40px;
+}
+
+.total-users {
+    color: red;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+th {
+    background-color: #002c3e;
+    color: white;
+}
+
+td {
+    background-color: #9de1fa;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #002c3e;
+}
+
+select {
+    border: 1px solid #002c3e;
+    outline: none;
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #002533;
+    color: white;
+    cursor: pointer;
+}
+
+select option {
+    background: #9de1fa;
+    color: #333;
+    font-size: 14px;
+    padding: 10px;
+}
+
+/* Booking Details */
