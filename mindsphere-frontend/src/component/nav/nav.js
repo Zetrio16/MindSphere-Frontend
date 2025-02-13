@@ -9,7 +9,7 @@ function Nav() {
             <div className="container d-flex justify-content-between align-items-center">
                 <div className="logo-container">
                     <NavLink to="/">
-                        <img src={logo || "/placeholder.svg"} alt="Logo" />
+                        <img src={logo || "/"} alt="Logo" />
                     </NavLink>
                 </div>
                 <ul className="list-unstyled d-flex justify-content-between align-items-center">

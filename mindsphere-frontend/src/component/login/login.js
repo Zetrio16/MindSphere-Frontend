@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import logout from '../../images/logout.webp';
+import './login.css';
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const API_URL = process.env.REACT_APP_API_URL.trim();
@@ -34,7 +36,7 @@ const Login = () => {
 
             setUser(res.data.user); // Update state with user info
 
-            // 🚀 Redirect based on role
+            // Redirect based on role
             if (res.data.user.role === 'admin') {
                 navigate('/dashboard');
             } else {
@@ -58,11 +60,11 @@ const Login = () => {
 
     return (
         <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-            <div>
+            <div className='login-container'>
                 {user ? (
-                    <div>
-                        <span>Hi, {user.name} 👋</span>
-                        <button onClick={handleLogout} style={{ marginLeft: '10px' }}>Logout</button>
+                    <div className='login-div'>
+                        <span className='login-span'>{user.name}</span>
+                        <button onClick={handleLogout}> <img src={logout}></img> </button>
                     </div>
                 ) : (
                     <GoogleLogin onSuccess={handleSuccess} onError={handleFailure} />
