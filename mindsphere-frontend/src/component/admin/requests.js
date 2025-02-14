@@ -4,11 +4,14 @@ import "./admin.css";
 const Requests = () => {
   const [requests, setRequests] = useState([]);
 
+  const test = {
+    title: "Midterm Examination",
+    description: "This is the midterm test covering all major topics.",
+    date: "2024-03-15",
+    googleFormLink: "https://forms.google.com/dummy-link",
+  };
+
   useEffect(() => {
-    // fetch("/api/requests")    // URL
-    //   .then((response) => response.json())
-    //   .then((data) => setRequests(data))
-    //   .catch((error) => console.error("Error fetching requests:", error));
     const dummyRequests = [
       { _id: "1", studentId: "S123", testId: "T001", status: "Pending" },
       { _id: "2", studentId: "S124", testId: "T002", status: "Approved" },
@@ -33,7 +36,11 @@ const Requests = () => {
           <tr>
             <th>Student ID</th>
             <th>Test ID</th>
-            <th>Status</th>
+            <th>Test Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Request Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -41,14 +48,41 @@ const Requests = () => {
             <tr key={req._id}>
               <td>{req.studentId}</td>
               <td>{req.testId}</td>
-              <td className="custom-dropdown-wrapper">
-                <select className="custom-dropdown"
+              <td>{test.title}</td>
+              <td>{test.description}</td>
+              <td>{test.date}</td>
+              <td>
+                <select
+                  className={`form-select w-100 ${
+                    req.status === "Approved"
+                      ? "bg-success text-light"
+                      : req.status === "Rejected"
+                      ? "bg-danger text-light"
+                      : "bg-warning text-dark"
+                  }`}
                   value={req.status}
-                  onChange={(e) => handleStatusChange(req._id, e.target.value)}>
-                  <option value="Pending">Pending</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Rejected">Rejected</option>
+                  onChange={(e) => handleStatusChange(req._id, e.target.value)}
+                >
+                  <option value="Pending" className="bg-warning text-dark">
+                    Pending
+                  </option>
+                  <option value="Approved" className="bg-success text-light">
+                    Approved
+                  </option>
+                  <option value="Rejected" className="bg-danger text-light">
+                    Rejected
+                  </option>
                 </select>
+              </td>
+              <td>
+                <a
+                  href={test.googleFormLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary btn-sm"
+                >
+                  View Test
+                </a>
               </td>
             </tr>
           ))}

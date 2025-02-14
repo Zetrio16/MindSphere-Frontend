@@ -19,7 +19,7 @@ const Login = () => {
             setUser(JSON.parse(storedUser));
         }
     }, []);
- 
+
     const handleSuccess = async (response) => {
         try {
 
@@ -67,7 +67,17 @@ const Login = () => {
                         <button onClick={handleLogout}> <img src={logout}></img> </button>
                     </div>
                 ) : (
-                    <GoogleLogin onSuccess={handleSuccess} onError={handleFailure} />
+                    <div className="custom-google-button">
+                        <GoogleLogin
+                            onSuccess={handleSuccess}
+                            onError={handleFailure}
+                            theme="outline"  // "outline", "filled_blue", "filled_black"
+                            size="large"         // "small", "medium", "large"
+                            text="continue_with" // "signin", "signup", "continue_with", "signup_with"
+                            shape="pill"         // "rectangular", "pill", "circle", "square"
+                        />
+                    </div>
+
                 )}
             </div>
         </GoogleOAuthProvider>

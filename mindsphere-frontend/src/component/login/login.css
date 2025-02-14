@@ -1,15 +1,15 @@
-.login-span{
+.login-span {
     font-weight: bold;
     font-size: 17px;
     color: #6c6c6c;
     margin-bottom: 20px;
 }
 
-.login-div{
+.login-div {
     padding: 5px;
 }
 
-.login-div button{
+.login-div button {
     border: none;
     background: transparent;
     border-radius: 50px;
@@ -18,14 +18,86 @@
     transition: all 0.3s ease;
 }
 
-.login-div button:hover{
+.login-div button:hover {
     box-shadow: 0px 0px 5px #000;
-}   
+}
 
-.login-div button img{
+.login-div button img {
     height: 40px;
 }
 
-.login-div button img:hover{
+.login-div button img:hover {
     cursor: pointer;
+}
+
+.custom-google-button {
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.custom-google-button:hover {
+    box-shadow: 0px 0px 5px #000;
+}
+
+.custom-google-button div {
+    background-color: #003a46 !important;
+    color: white !important;
+    font-size: 16px !important;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Medium screens (Tablets, 768px and up) */
+@media (max-width: 768px) {
+    .custom-google-button {
+        margin-right: 50px;
+    }
+
+    .custom-google-button div {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-google-button {
+        margin-right: 0px;
+    }
+
+    .custom-google-button div {
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-google-button {
+        margin-right: 30px;
+    }
+
+    .custom-google-button div {
+        font-size: 13px !important;
+    }
+}
+
+/* Small screens (Phones, 480px and up) */
+@media (max-width: 480px) {
+    .custom-google-button {
+        margin-right: 30px;
+    }
+
+    .custom-google-button div {
+        font-size: 11px !important;
+    }
+}
+
+/* Extra Small screens (Very small phones) */
+@media (max-width: 360px) {
+    .custom-google-button {
+        margin-right: 30px;
+    }
+
+    .custom-google-button div {
+        font-size: 10px !important;
+    }
 }
