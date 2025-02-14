@@ -36,6 +36,14 @@ const BookingDetails = () => {
     },
   ]);
 
+  const handleStatusChange = (index, newStatus) => {
+    setBookings((prevBookings) =>
+      prevBookings.map((booking, i) =>
+        i === index ? { ...booking, status: newStatus } : booking
+      )
+    );
+  };
+
   useEffect(() => {
     // const fetchBookings = async () => {
     //   try {
@@ -64,21 +72,24 @@ const BookingDetails = () => {
                 <p className="card-text"><strong>Date:</strong> {new Date(booking.date).toLocaleDateString()}</p>
                 <p className="card-text"><strong>Time:</strong> {booking.time}</p>
                 <p className="card-text"><strong>Service:</strong> {booking.selectedService}</p>
+                <p className="card-text"><strong>Created At:</strong> {new Date(booking.createdAt).toLocaleString()}</p>
                 <p className="card-text">
                   <strong>Status:</strong>
-                  <span
-                    className={`badge bg-${
-                      booking.status === "approved"
-                        ? "success"
-                        : booking.status === "rejected"
+                  <select
+                    className={`badge dropdown-select bg-${booking.status === "approved"
+                      ? "success"
+                      : booking.status === "rejected"
                         ? "danger"
                         : "warning"
-                    } ms-2`}
+                      } ms-2 border-0`}
+                    value={booking.status}
+                    onChange={(e) => handleStatusChange(index, e.target.value)}
                   >
-                    {booking.status}
-                  </span>
+                    <option value="pending" className="bg-warning text-dark">Pending</option>
+                    <option value="approved" className="bg-success text-light">Approved</option>
+                    <option value="rejected" className="bg-danger text-light">Rejected</option>
+                  </select>
                 </p>
-                <p className="card-text"><strong>Created At:</strong> {new Date(booking.createdAt).toLocaleString()}</p>
               </div>
             </div>
           </div>

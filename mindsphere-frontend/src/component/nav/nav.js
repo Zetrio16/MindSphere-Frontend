@@ -1,19 +1,47 @@
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import "./nav.css";
 import logo from "../../images/logo.png";
 import Login from "../login/login";
 
 function Nav() {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const navRef = useRef(null); // Ref for navbar
+
+    // Function to handle outside click
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (navRef.current && !navRef.current.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        // Attach event listener
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            // Cleanup event listener on unmount
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return (
-        <nav className="d-flex justify-content-between align-items-center">
+        <nav ref={navRef} className="d-flex justify-content-between align-items-center">
             <div className="container d-flex justify-content-between align-items-center">
                 <div className="logo-container">
                     <NavLink to="/">
                         <img src={logo || "/"} alt="Logo" />
                     </NavLink>
                 </div>
-                <ul className="list-unstyled d-flex justify-content-between align-items-center">
-                <li>
+
+                {/* Mobile Menu Button */}
+                <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    {menuOpen ? "✖" : "☰"}
+                </button>
+
+                {/* Navigation Links */}
+                <ul className={`nav-menu ${menuOpen ? "open" : ""}`}>
+                    <li>
                         <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
                             Home
                         </NavLink>
@@ -39,6 +67,7 @@ function Nav() {
                         </NavLink>
                     </li>
                 </ul>
+
                 <Login />
             </div>
         </nav>

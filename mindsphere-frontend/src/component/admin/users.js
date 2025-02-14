@@ -26,7 +26,7 @@ const Users = () => {
       <p className="user-details">Here are the user details along with their designated roles, ensuring clarity in access control. This helps in managing permissions effectively within the system.</p>
 
       <p className="total-users">Total Users: {users.length}</p>
-      
+
       <table border="1">
         <thead>
           <tr>
@@ -43,10 +43,31 @@ const Users = () => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>
-                <select value={user.role} onChange={(e) => handleRoleChange(user.id, e.target.value)}>
-                  <option value="admin">Admin</option>
-                  <option value="student">Student</option>
+                <select
+                  className="form-select w-100"
+                  style={{
+                    backgroundColor: user.role === "admin" ? "#4A90E2" : "#F5A623",
+                    color: "#ffffff",
+                    fontWeight: "bold",
+                    border: "none",
+                  }}
+                  value={user.role}
+                  onChange={(e) => handleRoleChange(user.id, e.target.value)}
+                >
+                  <option
+                    value="admin"
+                    style={{ backgroundColor: "#4A90E2", color: "#ffffff" }}
+                  >
+                    Admin
+                  </option>
+                  <option
+                    value="student"
+                    style={{ backgroundColor: "#F5A623", color: "#ffffff" }}
+                  >
+                    Student
+                  </option>
                 </select>
+
               </td>
             </tr>
           ))}

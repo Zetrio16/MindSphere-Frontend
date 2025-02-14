@@ -20,28 +20,27 @@ import AdminLayout from './component/admin/AdminLayout';
 import Dashboard from './component/admin/dashboard';
 import Users from './component/admin/users';
 import Requests from './component/admin/requests';
-import TestDetails from './component/admin/testDetails';
 import BookingDetails from './component/admin/bookingDetails';
 
 const PrivateRoute = ({ element, allowedRoles, redirectPath = "/" }) => {
   const token = localStorage.getItem('token');
   const userRole = localStorage.getItem('role');
 
-  useEffect(() => {
-    if (!token) {
-      alert("You must be logged in to access this page.");
-    } else if (allowedRoles && !allowedRoles.includes(userRole)) {
-      alert("You do not have permission to access this page.");
-    }
-  }, [token, userRole]);
+  // useEffect(() => {
+  //   if (!token) {
+  //     alert("You must be logged in to access this page.");
+  //   } else if (allowedRoles && !allowedRoles.includes(userRole)) {
+  //     alert("You do not have permission to access this page.");
+  //   }
+  // }, [token, userRole]);
 
-  if (!token) {
-    return <Navigate to={redirectPath} replace />;
-  }
+  // if (!token) {
+  //   return <Navigate to={redirectPath} replace />;
+  // }
 
-  if (allowedRoles && !allowedRoles.includes(userRole)) {
-    return <Navigate to="/" />;
-  }
+  // if (allowedRoles && !allowedRoles.includes(userRole)) {
+  //   return <Navigate to="/" />;
+  // }
 
   return element;
 };
@@ -65,11 +64,11 @@ const AppContent = () => {
         <Route path='/bookingForm' element={<PrivateRoute element={<BookingForm />} redirectPath="/services" />} />
 
         {/* Admin Routes with Layout */}
-        <Route path="/admin/*" element={<AdminLayout />}>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="*" element={<NotFound />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="users" element={<Users />} />
           <Route path="requests" element={<Requests />} />
-          <Route path='testDetails' element={<TestDetails />} />
           <Route path="BookingDetails" element={<BookingDetails />} />
         </Route>
       </Routes>

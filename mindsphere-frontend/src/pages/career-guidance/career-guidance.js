@@ -1,57 +1,70 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-// import { useAuth } from '../context/AuthContext'
-import './career-guidance.css'
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import GoogleForm from "../googleForm/google-form";
+import "./career-guidance.css";
 
 export default function CareerGuidance() {
-
-  const navigate = useNavigate(); // useNavigate must be inside the component
+  const [selectedTestId, setSelectedTestId] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const tests = [
     {
       id: 1,
-      title: "The big five personality test",
-      description: "Gain a deeper understanding of your traits and how they influence your thoughts, behaviors, and relationships. It provides a detailed analysis of openness, conscientiousness, extraversion, agreeableness, and emotional stability.",
-      path: "/tests/big-five"
+      title: "The Big Five Personality Test",
+      description: "Gain a deeper understanding of your personality traits and how they shape your thoughts, behaviors, and relationships. This test evaluates openness, conscientiousness, extraversion, agreeableness, and emotional stability to give you a well-rounded insight into your personality."
     },
     {
       id: 2,
-      title: "Riasec test",
-      description: "Discover your career interests and explore paths that align with your personality and skills. This test highlights your top three interest areas to guide career choices.",
-      path: "/tests/riasec"
+      title: "Riasec Test",
+      description: "Discover your career interests and explore professional paths that align with your strengths and preferences. This test categorizes you into six personality types—Realistic, Investigative, Artistic, Social, Enterprising, and Conventional—helping you make informed career choices."
     },
     {
       id: 3,
-      title: "Aptitude test",
-      description: "Identify your strengths and potential in various areas to guide personal and professional growth. This test assesses your abilities in problem-solving, critical thinking, and specific skill sets.",
-      path: "/tests/aptitude"
+      title: "Aptitude Test",
+      description: "Assess your problem-solving abilities, logical reasoning, and critical thinking skills. This test helps you identify your natural strengths in areas such as numerical reasoning, verbal skills, and spatial awareness, guiding you toward fields where you can excel."
     }
-  ]
+  ];
 
-  const randomFunction = () => {
-    console.log("Random function");
-    if (window.confirm("Are you sure you want to start the test?"))
-      navigate("/google-form"); // Navigate to the Google Form page
+
+  const handleStartTest = (testId) => {
+    if (window.confirm("Are you sure you want to start the test?")) {
+      setSelectedTestId(testId);
+      setShowForm(true);
+    }
   };
+
+  useEffect(() => {
+    if (location.pathname === "/career-guidance") {
+      setShowForm(false);
+      setSelectedTestId(null);
+    }
+  }, [location.pathname]);
 
   return (
     <div className="career-guidance-container">
-      <h1 className="career-guidance-title">
-        Career guidance & Counselling
-      </h1>
-
-      <div className="tests-grid">
-        {tests.map((test) => (
-          <div key={test.id} className="test-card">
-            <h2 className="test-title">{test.title}</h2>
-            <p className="test-description">{test.description}</p>
-            <button onClick={randomFunction}
-              className="start-test-btn">
-              Start test
-            </button>
+      {showForm ? (
+        <GoogleForm testId={selectedTestId} />
+      ) : (
+        <>
+          <h1 className="career-guidance-title mt-5 mb-0">Career Guidance & Counselling</h1>
+          <div className="container mb-5">
+            <p style={{ margin: "20px 0px", textAlign: "center", width: "70%", margin: "30px auto" }}>Discover more about yourself with these three insightful tests. Whether you want to understand your personality, explore career interests, or assess your skills, each test is designed to guide you. Click to begin your journey of self-discovery!</p>
+            <div className="tests-grid">
+              {tests.map((test) => (
+                <div key={test.id} className="test-card">
+                  <h2 className="test-title">{test.title}</h2>
+                  <p className="test-description">{test.description}</p>
+                  <button onClick={() => handleStartTest(test.id)} className="start-test-btn">
+                    Start test
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
+        </>
+      )}
     </div>
-  )
+  );
 }
