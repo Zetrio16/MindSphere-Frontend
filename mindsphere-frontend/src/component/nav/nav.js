@@ -8,7 +8,6 @@ function Nav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const navRef = useRef(null); // Ref for navbar
 
-    // Function to handle outside click
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (navRef.current && !navRef.current.contains(event.target)) {
@@ -16,11 +15,9 @@ function Nav() {
             }
         };
 
-        // Attach event listener
         document.addEventListener("mousedown", handleClickOutside);
 
         return () => {
-            // Cleanup event listener on unmount
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);

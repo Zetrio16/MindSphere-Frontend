@@ -45,7 +45,6 @@ nav li:hover {
     width: 100%;
 }
 
-/* Mobile nav button */
 .nav-toggle {
     display: none;
     background: none;
@@ -108,14 +107,23 @@ nav li:hover {
         padding: 0;
     }
 
-    /* When menu is open */
     .nav-menu.open {
         top: 0;
     }
 
+    .nav-menu{
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+    }
     .nav-menu li {
-        margin: 5px 0;
+        padding: 10px 0px;
         font-size: 18px;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
     }
 }
 
@@ -136,13 +144,19 @@ nav li:hover {
         z-index: 1100;
     }
 
-    .nav-menu {
-        padding-top: 60px;
+    .nav-menu{
+        border-bottom: 1px solid #ddd;
+        box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
+    }
+    .nav-menu li {
+        padding: 10px 0px;
+        font-size: 15px;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
     }
 
-    .nav-menu li {
-        font-size: 16px;
-        margin: 12px 0;
+    .nav-menu li:last-child {
+        border-bottom: none;
     }
 
     .login-btn {
