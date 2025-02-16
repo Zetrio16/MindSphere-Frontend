@@ -21,15 +21,25 @@ import Dashboard from './component/admin/dashboard';
 import Users from './component/admin/users';
 import Requests from './component/admin/requests';
 import BookingDetails from './component/admin/bookingDetails';
+import { isTokenValid } from './utils/tokenUtils';
+
+import { useNavigate } from 'react-router-dom';
 
 // ✅ Private Route Component (Uncommented & Fixed)
 const PrivateRoute = ({ element, allowedRoles, redirectPath = "/" }) => {
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user')); // Parse stored user object
   const userRole = user ? user.role : null; // Get role safely
-
+  const navigate = useNavigate();
 
   useEffect(() => {
+
+    if (!isTokenValid()) {
+      alert('Please log in again.');
+      navigate('/');
+      return;
+    }
+
     if (!token) {
       alert("You must be logged in to access this page.");
     } else if (allowedRoles && !allowedRoles.includes(userRole)) {
@@ -54,7 +64,7 @@ const AppContent = () => {
 
   return (
     <>
-      {!isAdminRoute && <Nav />}  {/* Non-admin routes ke liye Navbar */} 
+      {!isAdminRoute && <Nav />}  {/* Non-admin routes ke liye Navbar */}
 
       <Routes>
         <Route path="*" element={<NotFound />} />
@@ -75,7 +85,7 @@ const AppContent = () => {
         </Route>
       </Routes>
 
-      {!isAdminRoute && <Footer />}  {/* Non-admin routes ke liye Footer */} 
+      {!isAdminRoute && <Footer />}  {/* Non-admin routes ke liye Footer */}
     </>
   );
 };

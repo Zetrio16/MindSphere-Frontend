@@ -1,23 +1,37 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { isTokenValid } from "../../utils/tokenUtils";
 
 const API_URL = process.env.REACT_APP_API_URL.trim();
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const currentUser = JSON.parse(localStorage.getItem("user")); // Get logged-in user info
+  const currentUser = JSON.parse(localStorage.getItem("user") || "{}"); // Ensure no null value
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const token = localStorage.getItem("token");
+        if (!token) {
+          console.error("No token found, cannot fetch users.");
+          return;
+        }
+
+        if (!isTokenValid()) {
+          return;
+      }
+
         const response = await axios.get(`${API_URL}/admin/users`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        setUsers(response.data.users);
+        if (response.data && response.data.users) {
+          setUsers(response.data.users);
+        } else {
+          console.error("Unexpected response structure:", response.data);
+        }
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -37,6 +51,11 @@ const Users = () => {
 
     try {
       const token = localStorage.getItem("token");
+
+      if (!isTokenValid()) {
+        return;
+    }
+
       await axios.put(
         `${API_URL}/admin/users/${id}/role`,
         { role: newRole },
@@ -47,7 +66,6 @@ const Users = () => {
         }
       );
 
-      // Update state after successful API call
       setUsers(users.map(user => (user._id === id ? { ...user, role: newRole } : user)));
     } catch (error) {
       console.error("Error updating role:", error);
@@ -65,13 +83,17 @@ const Users = () => {
 
     try {
       const token = localStorage.getItem("token");
+
+      if (!isTokenValid()) {
+        return;
+    }
+
       await axios.delete(`${API_URL}/admin/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      // Remove user from state after successful deletion
       setUsers(users.filter(user => user._id !== id));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -82,8 +104,7 @@ const Users = () => {
     <div className="users">
       <h1>Admin Dashboard</h1>
       <p className="user-details">
-        Here are the user details along with their designated roles, ensuring clarity in access control. This helps in
-        managing permissions effectively within the system.
+        Here are the user details along with their designated roles, ensuring clarity in access control.
       </p>
 
       <p className="total-users">Total Users: {users.length}</p>
@@ -101,7 +122,7 @@ const Users = () => {
         <tbody>
           {users.map((user, index) => (
             <tr key={user._id}>
-              <td>{index + 1}</td> {/* Show index number instead of user ID */}
+              <td>{index + 1}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>
@@ -115,14 +136,10 @@ const Users = () => {
                   }}
                   value={user.role}
                   onChange={(e) => handleRoleChange(user._id, e.target.value)}
-                  disabled={currentUser._id === user._id} // Disable role change for self
+                  disabled={currentUser._id === user._id}
                 >
-                  <option value="admin" style={{ backgroundColor: "#4A90E2", color: "#ffffff" }}>
-                    Admin
-                  </option>
-                  <option value="student" style={{ backgroundColor: "#F5A623", color: "#ffffff" }}>
-                    Student
-                  </option>
+                  <option value="admin">Admin</option>
+                  <option value="student">Student</option>
                 </select>
               </td>
               <td>
