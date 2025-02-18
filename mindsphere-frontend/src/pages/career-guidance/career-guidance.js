@@ -10,44 +10,20 @@ const API_URL = process.env.REACT_APP_API_URL.trim();
 export default function CareerGuidance() {
   const [selectedTestId, setSelectedTestId] = useState(null);
   const [showForm, setShowForm] = useState(false);
-  const [requestStatus, setRequestStatus] = useState("approved"); // default to pending
+  const [requestStatus, setRequestStatus] = useState("approved"); // default to approved
+  const [tests, setTests] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const tests = [
-    {
-      id: 1,
-      title: "The Big Five Personality Test",
-      description:
-        "Gain a deeper understanding of your personality traits and how they shape your thoughts, behaviors, and relationships. This test evaluates openness, conscientiousness, extraversion, agreeableness, and emotional stability to give you a well-rounded insight into your personality.",
-    },
-    {
-      id: 2,
-      title: "Riasec Test",
-      description:
-        "Discover your career interests and explore professional paths that align with your strengths and preferences. This test categorizes you into six personality types—Realistic, Investigative, Artistic, Social, Enterprising, and Conventional—helping you make informed career choices.",
-    },
-    {
-      id: 3,
-      title: "Aptitude Test",
-      description:
-        "Assess your problem-solving abilities, logical reasoning, and critical thinking skills. This test helps you identify your natural strengths in areas such as numerical reasoning, verbal skills, and spatial awareness, guiding you toward fields where you can excel.",
-    },
-  ];
 
   // ✅ Fetch request status when component loads
   useEffect(() => {
     const fetchRequestStatus = async () => {
-      if (!isTokenValid()) {
-        return;
-      }
+      if (!isTokenValid()) return;
 
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(`${API_URL}/student/request-status`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         // Update request status
@@ -61,11 +37,29 @@ export default function CareerGuidance() {
     fetchRequestStatus();
   }, []);
 
+  // ✅ Fetch test info from /tests-info API
+  useEffect(() => {
+    const fetchTestInfo = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/student/tests-info`);
+        const fetchedTests = response.data.data.map((test) => ({
+          ...test
+        }));
+        //console.log("Fetched tests with DB IDs:", fetchedTests);
+        setTests(fetchedTests);
+      } catch (error) {
+        console.error("Error fetching test info:", error);
+      }
+    };
+
+    fetchTestInfo();
+  }, []);
+
+
   // ✅ Handle button click: Start test if approved
   const handleStartTest = (testId) => {
     if (!isTokenValid()) {
       alert("Please log in to start the test.");
-
       return;
     }
 
@@ -101,11 +95,11 @@ export default function CareerGuidance() {
             </p>
             <div className="tests-grid">
               {tests.map((test) => (
-                <div key={test.id} className="test-card">
+                <div key={test._id} className="test-card">
                   <h2 className="test-title">{test.title}</h2>
                   <p className="test-description">{test.description}</p>
                   <button
-                    onClick={() => handleStartTest(test.id)}
+                    onClick={() => handleStartTest(test._id)}
                     className={`start-test-btn ${requestStatus === "pending" ? "disabled" : ""}`}
                     disabled={requestStatus === "pending"}
                   >

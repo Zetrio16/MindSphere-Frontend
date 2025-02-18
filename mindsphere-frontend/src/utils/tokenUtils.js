@@ -1,8 +1,10 @@
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 
-// ✅ Function to validate token
-export const isTokenValid = () => {
+// ✅ Function to validate token and renew if expired
+export const isTokenValid = async () => {
     const token = localStorage.getItem("token");
+    const API_URL = process.env.REACT_APP_API_URL;
 
     // Check if token exists
     if (!token) {
@@ -16,17 +18,40 @@ export const isTokenValid = () => {
 
         // Check if token has expired
         if (decodedToken.exp < currentTime) {
-            // Token expired; clear from storage
+            console.log("Token expired. Attempting to renew...");
+
+            // Remove old token
             localStorage.removeItem("token");
             localStorage.removeItem("user");
-            alert("Session expired. Please log in again.");
-            return false;
+
+            try {
+                // Request a new token from the backend
+                const response = await axios.post(`${API_URL}/auth/renew-token`, {
+                    email: decodedToken.email
+                });
+
+                const newToken = response.data.newToken;
+                const user = response.data.user;
+
+                // Save the new token and user data to localStorage
+                localStorage.setItem("token", newToken);
+                localStorage.setItem("user", JSON.stringify(user));
+
+                console.log("New token acquired successfully.");
+                return true;
+
+            } catch (error) {
+                console.error("Failed to renew token:", error);
+                alert("Session expired. Please log in again.");
+                return false;
+            }
         }
 
+        // Token is still valid
         return true;
 
     } catch (error) {
-        // Invalid token (tampering or invalid format)
+        // Invalid token
         console.error("Invalid token detected:", error);
         localStorage.removeItem("token");
         localStorage.removeItem("user");
