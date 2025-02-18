@@ -117,7 +117,7 @@ const BookingDetails = () => {
       </p>
       <div className="row">
         {bookings.map((booking, index) => (
-          <div key={index} className="col-md-4">
+          <div key={index} className="col-lg-4 col-md-6 col-sm-12">
             <div className="card mb-4 shadow-sm">
               <div className="card-body">
                 <h5 className="card-title text-uppercase">{booking.firstName}</h5>
