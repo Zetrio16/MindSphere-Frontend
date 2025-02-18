@@ -21,26 +21,39 @@ import Dashboard from './component/admin/dashboard';
 import Users from './component/admin/users';
 import Requests from './component/admin/requests';
 import BookingDetails from './component/admin/bookingDetails';
+import { isTokenValid } from './utils/tokenUtils';
 
+import { useNavigate } from 'react-router-dom';
+
+// ✅ Private Route Component (Uncommented & Fixed)
 const PrivateRoute = ({ element, allowedRoles, redirectPath = "/" }) => {
   const token = localStorage.getItem('token');
-  const userRole = localStorage.getItem('role');
+  const user = JSON.parse(localStorage.getItem('user')); // Parse stored user object
+  const userRole = user ? user.role : null; // Get role safely
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!token) {
-  //     alert("You must be logged in to access this page.");
-  //   } else if (allowedRoles && !allowedRoles.includes(userRole)) {
-  //     alert("You do not have permission to access this page.");
-  //   }
-  // }, [token, userRole]);
+  useEffect(() => {
 
-  // if (!token) {
-  //   return <Navigate to={redirectPath} replace />;
-  // }
+    if (!isTokenValid()) {
+      alert('Please log in again.');
+      navigate('/');
+      return;
+    }
 
-  // if (allowedRoles && !allowedRoles.includes(userRole)) {
-  //   return <Navigate to="/" />;
-  // }
+    if (!token) {
+      alert("You must be logged in to access this page.");
+    } else if (allowedRoles && !allowedRoles.includes(userRole)) {
+      alert("You do not have permission to access this page.");
+    }
+  }, [token, userRole]);
+
+  if (!token) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  if (allowedRoles && !allowedRoles.includes(userRole)) {
+    return <Navigate to="/" replace />;
+  }
 
   return element;
 };
@@ -52,7 +65,7 @@ const AppContent = () => {
   return (
     <>
       {!isAdminRoute && <Nav />}  {/* Non-admin routes ke liye Navbar */}
-      
+
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<MainBody />} />
@@ -63,16 +76,15 @@ const AppContent = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path='/bookingForm' element={<PrivateRoute element={<BookingForm />} redirectPath="/services" />} />
 
-        {/* Admin Routes with Layout */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="*" element={<NotFound />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="users" element={<Users />} />
-          <Route path="requests" element={<Requests />} />
-          <Route path="BookingDetails" element={<BookingDetails />} />
+        {/* ✅ Admin Routes - Restricted to Admin Only */}
+        <Route path="/admin" element={<PrivateRoute element={<AdminLayout />} allowedRoles={["admin"]} redirectPath="/" />}>
+          {/* <Route path="dashboard" element={<PrivateRoute element={<Dashboard />} allowedRoles={["admin"]} />} /> */}
+          <Route path="dashboard" element={<PrivateRoute element={<Users />} allowedRoles={["admin"]} />} />
+          <Route path="requests" element={<PrivateRoute element={<Requests />} allowedRoles={["admin"]} />} />
+          <Route path="bookingDetails" element={<PrivateRoute element={<BookingDetails />} allowedRoles={["admin"]} />} />
         </Route>
       </Routes>
-      
+
       {!isAdminRoute && <Footer />}  {/* Non-admin routes ke liye Footer */}
     </>
   );

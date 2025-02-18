@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import "./bookingForm.css"
+import { isTokenValid } from "../../utils/tokenUtils"
 
 const API_URL = process.env.REACT_APP_API_URL.trim();
 
@@ -85,6 +86,10 @@ const BookingForm = () => {
     
         if (!token) {
             alert("You must be logged in to submit a booking request.");
+            return;
+        }
+
+        if (!isTokenValid()) {
             return;
         }
     
