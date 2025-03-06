@@ -12,7 +12,6 @@ export default function CareerGuidance() {
   const [showForm, setShowForm] = useState(false);
   const [requestStatus, setRequestStatus] = useState("approved"); // default to approved
   const [tests, setTests] = useState([]);
-  const navigate = useNavigate();
   const location = useLocation();
 
   // ✅ Fetch request status when component loads
