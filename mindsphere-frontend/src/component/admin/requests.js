@@ -7,6 +7,8 @@ const API_URL = process.env.REACT_APP_API_URL.trim();
 const Requests = () => {
   const [requests, setRequests] = useState([]);
   const [tests, setTests] = useState([]);
+  const [loadingStates, setLoadingStates] = useState({});
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,10 +73,17 @@ const Requests = () => {
   };
 
   const handleFetchReport = async (email) => {
+    if (isFetching) {
+      alert("Please wait, another report is being fetched.");
+      return;
+    }
+
+    setIsFetching(true);
+    setLoadingStates((prev) => ({ ...prev, [email]: true }));
+
     try {
       const token = localStorage.getItem("token");
-  
-      // 1️⃣ Trigger backend to fetch test results
+
       await axios.post(
         `${API_URL}/admin/fetch-test-results/${email}`,
         {},
@@ -82,18 +91,16 @@ const Requests = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-  
+
       console.log("✅ Fetch initiated, waiting 10 seconds...");
-  
-      // ⏳ Wait for 10 seconds
+
       await new Promise((resolve) => setTimeout(resolve, 10000));
-  
-      // 2️⃣ Download the report and trigger browser save
+
       const response = await axios.get(`${API_URL}/admin/download/${email}`, {
         headers: { Authorization: `Bearer ${token}` },
-        responseType: 'blob', // 👈 IMPORTANT
+        responseType: 'blob',
       });
-  
+
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -101,16 +108,19 @@ const Requests = () => {
       document.body.appendChild(link);
       link.click();
       link.remove();
-  
+
       console.log("✅ Report downloaded successfully.");
     } catch (error) {
       console.error("❌ Error fetching report:", error);
+    } finally {
+      setIsFetching(false);
+      setLoadingStates((prev) => ({ ...prev, [email]: false }));
     }
-  }; 
-  
+  };
 
   return (
     <div className="container test-requests">
+
       <h2 className="mb-4">Test Information</h2>
 
       <div class="table-container">
@@ -151,7 +161,6 @@ const Requests = () => {
 
       <h2 className="mb-4">Test Requests</h2>
 
-      {/* ✅ Table 2: Student Requests */}
       <table className="mb-5">
         <thead>
           <tr>
@@ -171,13 +180,12 @@ const Requests = () => {
                 <td>{new Date(req.date).toLocaleString()}</td>
                 <td>
                   <select
-                    className={`form-select w-100 ${
-                      req.status === "approved"
-                        ? "bg-success text-light"
-                        : req.status === "rejected"
+                    className={`form-select w-100 ${req.status === "approved"
+                      ? "bg-success text-light"
+                      : req.status === "rejected"
                         ? "bg-danger text-light"
                         : "bg-warning text-dark"
-                    }`}
+                      }`}
                     value={req.status}
                     onChange={(e) => handleStatusChange(req._id, e.target.value)}
                   >
@@ -191,8 +199,20 @@ const Requests = () => {
                 </td>
                 <td>
                   <button
-                    className="btn btn-primary btn-sm"
-                    onClick={() => handleFetchReport(req.studentId?.email)}>Get Report</button>
+                    className="btn btn-primary btn-md w-100"
+                    onClick={() => handleFetchReport(req.studentId?.email)}
+                    disabled={loadingStates[req.studentId?.email] || isFetching}
+                  >
+                    {loadingStates[req.studentId?.email] ? (
+                      <div className="d-flex align-items-center justify-content-center">
+                        <span style={{ marginRight: "8px", fontWeight:"bold" }}>Generating Report. Please Wait...</span>
+                        <div className="spinner"></div>
+                      </div>
+
+                    ) : (
+                      <div>Download Report</div>
+                    )}
+                  </button>
                 </td>
               </tr>
             ))

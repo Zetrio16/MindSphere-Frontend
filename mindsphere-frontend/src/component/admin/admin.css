@@ -225,6 +225,26 @@ select option {
 }
 
 
+.spinner {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #002533;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {
@@ -312,10 +332,10 @@ select option {
         overflow-x: scroll;
     }
 
-    ::-webkit-scrollbar{
-        display:block;
+    ::-webkit-scrollbar {
+        display: block;
     }
-    
+
     table {
         min-width: 600px;
         border: 2px solid #002c3e;
