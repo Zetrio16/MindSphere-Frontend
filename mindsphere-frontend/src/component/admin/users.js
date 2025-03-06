@@ -19,7 +19,7 @@ const Users = () => {
 
         if (!isTokenValid()) {
           return;
-      }
+        }
 
         const response = await axios.get(`${API_URL}/admin/users`, {
           headers: {
@@ -54,7 +54,7 @@ const Users = () => {
 
       if (!isTokenValid()) {
         return;
-    }
+      }
 
       await axios.put(
         `${API_URL}/admin/users/${id}/role`,
@@ -86,7 +86,7 @@ const Users = () => {
 
       if (!isTokenValid()) {
         return;
-    }
+      }
 
       await axios.delete(`${API_URL}/admin/users/${id}`, {
         headers: {
@@ -109,52 +109,54 @@ const Users = () => {
 
       <p className="total-users">Total Users: {users.length}</p>
 
-      <table border="1">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={user._id}>
-              <td>{index + 1}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
-                <select
-                  className="form-select w-100"
-                  style={{
-                    backgroundColor: user.role === "admin" ? "#4A90E2" : "#F5A623",
-                    color: "#ffffff",
-                    fontWeight: "bold",
-                    border: "none",
-                  }}
-                  value={user.role}
-                  onChange={(e) => handleRoleChange(user._id, e.target.value)}
-                  disabled={currentUser._id === user._id}
-                >
-                  <option value="admin">Admin</option>
-                  <option value="student">Student</option>
-                </select>
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDelete(user._id)}
-                  disabled={currentUser._id === user._id}
-                >
-                  Delete
-                </button>
-              </td>
+      <div class="table-container">
+        <table border="1">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id}>
+                <td>{index + 1}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>
+                  <select
+                    className="form-select w-100"
+                    style={{
+                      backgroundColor: user.role === "admin" ? "#4A90E2" : "#F5A623",
+                      color: "#ffffff",
+                      fontWeight: "bold",
+                      border: "none",
+                    }}
+                    value={user.role}
+                    onChange={(e) => handleRoleChange(user._id, e.target.value)}
+                    disabled={currentUser._id === user._id}
+                  >
+                    <option value="admin">Admin</option>
+                    <option value="student">Student</option>
+                  </select>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(user._id)}
+                    disabled={currentUser._id === user._id}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

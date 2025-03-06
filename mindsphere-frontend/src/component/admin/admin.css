@@ -2,18 +2,30 @@
 .admin-nav {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: #002c3e;
     color: white;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    padding: 20px 0px;
+    padding: 20px 40px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.logout-icon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
 }
 
 .admin-nav h2 {
@@ -21,12 +33,12 @@
     margin-bottom: 0px;
 }
 
-.admin-logo-container{
+.admin-logo-container {
     width: 80px;
     margin-right: 50px;
 }
 
-.admin-logo-container img{
+.admin-logo-container img {
     width: 100%;
 }
 
@@ -34,7 +46,7 @@
 
 .sidebar {
     width: 200px;
-    height: 100vh;
+    height: 100%;
     background-color: #77dbff;
     color: #002c3e;
     font-style: italic;
@@ -54,10 +66,6 @@
     text-align: center;
 }
 
-.sidebar ul li {
-    margin: 20px 0;
-}
-
 .sidebar ul li a {
     text-decoration: none;
     font-size: 18px;
@@ -75,59 +83,9 @@
 
 .admin-content {
     margin-left: 200px;
-    /* Adjust for sidebar */
     margin-top: 80px;
-    /* Adjust for fixed header */
     padding: 20px;
     width: calc(100% - 200px);
-    /* Ensure content fits */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 180px;
-    }
-
-    .admin-content {
-        margin-left: 180px;
-        width: calc(100% - 180px);
-    }
-
-    .sidebar ul li a {
-        font-size: 16px;
-        padding: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 10px 0;
-    }
-
-    .sidebar ul {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-    }
-
-    .sidebar ul li {
-        margin: 0;
-    }
-
-    .sidebar ul li a {
-        padding: 5px;
-    }
-
-    .admin-content {
-        margin-left: 0;
-        width: 100%;
-    }
 }
 
 /* Dashboard */
@@ -178,6 +136,15 @@
     padding: 40px 20px;
 }
 
+.titl {
+    width: 15%;
+}
+
+.descri {
+    font-weight: 100 !important;
+    width: 75%;
+}
+
 .test-requests h2 {
     text-align: center;
     margin: 20px;
@@ -208,6 +175,7 @@
 
 table {
     width: 100%;
+    overflow-x: scroll;
     border-collapse: collapse;
     margin-top: 20px;
     font-weight: 600;
@@ -249,42 +217,107 @@ select option {
 
 /* Booking Details */
 
-.dropdown-select{
+.dropdown-select {
     width: 80%;
     padding: 10px;
     font-size: 16px;
     cursor: pointer;
 }
 
-/* ADDED LATER */
 
-.admin-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Pushes logout button to far right */
-    padding: 10px 20px;
-    background-color: #2c3e50;
-    color: white;
-  }
-  
-  .admin-logo-container img {
-    height: 50px;
-  }
-  
-  h2 {
-    flex-grow: 1; /* Ensures title stays centered */
-    text-align: center;
-  }
-  
-  .logout-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .logout-icon {
-    width: 30px;  /* Make icon smaller */
-    height: 30px;
-    filter: invert(1); /* Makes sure the icon is visible on dark backgrounds */
-  }
-  
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 180px;
+    }
+
+    .admin-content {
+        margin-left: 180px;
+        width: calc(100% - 180px);
+    }
+
+    .sidebar ul li a {
+        font-size: 18px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .admin-nav h2 {
+        font-size: 25px;
+    }
+
+    .admin-nav .admin-logo-container {
+        width: 60px;
+        margin-right: 20px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 100px;
+        left: 0;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px 0;
+        background-color: #77dbff;
+        z-index: 999;
+        border-right: none;
+        border-bottom: 1px solid #002c3e;
+    }
+
+    .sidebar ul {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .sidebar ul li a {
+        border-bottom: none;
+        font-size: 15px;
+    }
+
+    .admin-content {
+        margin-top: 140px;
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .test-requests {
+        padding: 40px 10px;
+    }
+
+    .table-container {
+        overflow-x: scroll;
+    }
+
+    table {
+        min-width: 800px;
+    }
+}
+
+@media (max-width: 480px) {
+    .test-requests {
+        padding: 20px 0px;
+    }
+
+    .table-container {
+        overflow-x: scroll;
+    }
+
+    ::-webkit-scrollbar{
+        display:block;
+    }
+    
+    table {
+        min-width: 600px;
+        border: 2px solid #002c3e;
+    }
+}
