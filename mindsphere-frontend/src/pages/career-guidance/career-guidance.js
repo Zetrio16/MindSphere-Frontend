@@ -16,25 +16,33 @@ export default function CareerGuidance() {
 
   // ✅ Fetch request status when component loads
   useEffect(() => {
-    const fetchRequestStatus = async () => {
-      if (!isTokenValid()) return;
+  const fetchRequestStatus = async () => {
+    const token = localStorage.getItem("token");
+    if (!token || !isTokenValid()) {
+      setRequestStatus("unauthorized");
+      return;
+    }
 
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(`${API_URL}/student/request-status`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+    try {
+      const response = await axios.get(`${API_URL}/student/request-status`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-        // Update request status
-        setRequestStatus(response.data.status);
-      } catch (error) {
-        console.error("Error fetching request status:", error);
-        setRequestStatus("error"); // fallback if the request fails
+      setRequestStatus(response.data.status);
+    } catch (error) {
+      console.error("Error fetching request status:", error);
+
+      if (error.response && error.response.status === 401) {
+        setRequestStatus("unauthorized");
+      } else {
+        setRequestStatus("error");
       }
-    };
+    }
+  };
 
-    fetchRequestStatus();
-  }, []);
+  fetchRequestStatus();
+}, []);
+
 
   // ✅ Fetch test info from /tests-info API
   useEffect(() => {
