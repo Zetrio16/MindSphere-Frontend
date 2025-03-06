@@ -77,6 +77,45 @@ const Requests = () => {
     }
   };
 
+  const handleFetchReport = async (email) => {
+    try {
+      const token = localStorage.getItem("token");
+  
+      // 1️⃣ Trigger backend to fetch test results
+      await axios.post(
+        `${API_URL}/admin/fetch-test-results/${email}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+  
+      console.log("✅ Fetch initiated, waiting 10 seconds...");
+  
+      // ⏳ Wait for 10 seconds
+      await new Promise((resolve) => setTimeout(resolve, 10000));
+  
+      // 2️⃣ Download the report and trigger browser save
+      const response = await axios.get(`${API_URL}/admin/download/${email}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        responseType: 'blob', // 👈 IMPORTANT
+      });
+  
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `Report-${email}.docx`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+  
+      console.log("✅ Report downloaded successfully.");
+    } catch (error) {
+      console.error("❌ Error fetching report:", error);
+    }
+  }; 
+  
+
   return (
     <div className="container test-requests">
       <h2 className="mb-4">Test Information</h2>
@@ -126,6 +165,7 @@ const Requests = () => {
             <th>Student Email</th>
             <th>Status Last Updated</th>
             <th>Request Status</th>
+            <th>Report</th>
           </tr>
         </thead>
         <tbody>
@@ -154,6 +194,11 @@ const Requests = () => {
                       Approved
                     </option>
                   </select>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => handleFetchReport(req.studentId?.email)}>Get Report</button>
                 </td>
               </tr>
             ))
