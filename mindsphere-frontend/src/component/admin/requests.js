@@ -160,69 +160,71 @@ const Requests = () => {
       </div>
 
       <h2 className="mb-4">Test Requests</h2>
-
-      <table className="mb-5">
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Student Email</th>
-            <th>Status Last Updated</th>
-            <th>Request Status</th>
-            <th>Report</th>
-          </tr>
-        </thead>
-        <tbody>
-          {requests.length > 0 ? (
-            requests.map((req) => (
-              <tr key={req._id}>
-                <td>{req.studentId?.name || "N/A"}</td>
-                <td>{req.studentId?.email || "N/A"}</td>
-                <td>{new Date(req.date).toLocaleString()}</td>
-                <td>
-                  <select
-                    className={`form-select w-100 ${req.status === "approved"
-                      ? "bg-success text-light"
-                      : req.status === "rejected"
-                        ? "bg-danger text-light"
-                        : "bg-warning text-dark"
-                      }`}
-                    value={req.status}
-                    onChange={(e) => handleStatusChange(req._id, e.target.value)}
-                  >
-                    <option value="pending" className="bg-warning text-dark">
-                      Pending
-                    </option>
-                    <option value="approved" className="bg-success text-light">
-                      Approved
-                    </option>
-                  </select>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-primary btn-md w-100"
-                    onClick={() => handleFetchReport(req.studentId?.email)}
-                    disabled={loadingStates[req.studentId?.email] || isFetching}
-                  >
-                    {loadingStates[req.studentId?.email] ? (
-                      <div className="d-flex align-items-center justify-content-center">
-                        <span style={{ marginRight: "8px", fontWeight:"bold" }}>Generating Report. Please Wait...</span>
-                        <div className="spinner"></div>
-                      </div>
-
-                    ) : (
-                      <div>Download Report</div>
-                    )}
-                  </button>
-                </td>
-              </tr>
-            ))
-          ) : (
+      
+      <div class="table-container">
+        <table className="mb-5">
+          <thead>
             <tr>
-              <td colSpan="4" className="text-center">Loading requests...</td>
+              <th>Student Name</th>
+              <th>Student Email</th>
+              <th>Status Last Updated</th>
+              <th>Request Status</th>
+              <th>Report</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {requests.length > 0 ? (
+              requests.map((req) => (
+                <tr key={req._id}>
+                  <td>{req.studentId?.name || "N/A"}</td>
+                  <td>{req.studentId?.email || "N/A"}</td>
+                  <td>{new Date(req.date).toLocaleString()}</td>
+                  <td>
+                    <select
+                      className={`form-select w-100 ${req.status === "approved"
+                        ? "bg-success text-light"
+                        : req.status === "rejected"
+                          ? "bg-danger text-light"
+                          : "bg-warning text-dark"
+                        }`}
+                      value={req.status}
+                      onChange={(e) => handleStatusChange(req._id, e.target.value)}
+                    >
+                      <option value="pending" className="bg-warning text-dark">
+                        Pending
+                      </option>
+                      <option value="approved" className="bg-success text-light">
+                        Approved
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-primary btn-md w-100"
+                      onClick={() => handleFetchReport(req.studentId?.email)}
+                      disabled={loadingStates[req.studentId?.email] || isFetching}
+                    >
+                      {loadingStates[req.studentId?.email] ? (
+                        <div className="d-flex align-items-center justify-content-center">
+                          <span style={{ marginRight: "8px", fontWeight: "bold" }}>Generating Report. Please Wait...</span>
+                          <div className="spinner"></div>
+                        </div>
+
+                      ) : (
+                        <div>Download Report</div>
+                      )}
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="text-center">Loading requests...</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
