@@ -13,6 +13,7 @@ import Contact from './pages/contact/contact';
 import Footer from './component/footer/footer';
 import BookingForm from './pages/bookingForm/bookingForm';
 import NotFound from './pages/notFound/notFound';
+import PrivacyPolicy from './pages/privacy-policy/privacy-policy';
 import { useEffect } from 'react';
 
 // admin
@@ -73,6 +74,7 @@ const AppContent = () => {
         <Route path="/career-guidance" element={<CareerGuidance />} />
         <Route path="/google-form" element={<PrivateRoute element={<GoogleForm />} redirectPath="/career-guidance" />} />
         <Route path="/team" element={<Team />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/bookingForm' element={<PrivateRoute element={<BookingForm />} redirectPath="/services" />} />
 
