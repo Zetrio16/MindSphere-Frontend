@@ -38,8 +38,7 @@ const PrivacyPolicy = () => {
           <a
             href="https://policies.google.com/privacy"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Privacy Policy
           </a>
           .
