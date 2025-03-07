@@ -87,7 +87,7 @@ const AppContent = () => {
         </Route>
       </Routes>
 
-      {!isAdminRoute && <Footer />}  {/* Non-admin routes ke liye Footer */}
+      {!isAdminRoute && <Footer />}  {/* Non-admin routes ke liye Footer */}  
     </>
   );
 };
