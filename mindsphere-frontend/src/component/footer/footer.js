@@ -1,6 +1,8 @@
 import React from "react";
 import "./footer.css";
 import logo from '../../images/logo.png';
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
     return (
@@ -38,7 +40,7 @@ const Footer = () => {
                                 <h3>Policy</h3>
                                 <ul>
                                     <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><Link to="/privacy-policy">Privacy Policy</Link></li>
                                     <li><a href="#">Accessibility Statement</a></li>
                                 </ul>
                             </div>
