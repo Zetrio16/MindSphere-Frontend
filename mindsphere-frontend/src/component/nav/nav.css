@@ -37,7 +37,7 @@ nav li:hover {
 
 .logo-container {
     height: 60px;
-    width: 60px;
+    width: auto;
 }
 
 .logo-container img {

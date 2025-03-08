@@ -50,7 +50,7 @@ function TeamSection() {
 
   return (
     <section className="team-section">
-      <h2 className="team-title">This is Our Team</h2>
+      <h2 className="team-title">Our Team</h2>
       
       {/* Founder Card */}
       <div className="founder-card-wrapper">
