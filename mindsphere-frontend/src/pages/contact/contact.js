@@ -54,8 +54,8 @@ export default function ContactPage() {
                                 <MapPin className="contact-icon" />
                                 <div>
                                     <h4>Visit Us</h4>
-                                    <p>123 Main Street, Suite 4A</p>
-                                    <p>Islamabad, Pakistan</p>
+                                    <p>559V+FX4, Zia ul Haq Rd, Civil Lines</p>
+                                    <p>Gujranwala, Pakistan</p> 
                                 </div>
                             </div>
 
@@ -72,10 +72,10 @@ export default function ContactPage() {
                         <div className="social-links">
                             <h4>Connect With Us</h4>
                             <div className="social-icons">
-                                <a href="https://facebook.com/mindsphere" target="_blank" rel="noopener noreferrer">
+                                <a href="https://web.facebook.com/people/MindSphere/61568585522431" target="_blank" rel="noopener noreferrer">
                                     <Facebook className="social-icon" />
                                 </a>
-                                <a href="https://www.instagram.com/mindspheregrw/" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/mindspheregrw" target="_blank" rel="noopener noreferrer">
                                     <Instagram className="social-icon" />
                                 </a>
                                 <a href="https://linkedin.com/company/mindsphere" target="_blank" rel="noopener noreferrer">
@@ -87,7 +87,7 @@ export default function ContactPage() {
 
                     <div className="map-container">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.8755183994477!2d73.0290124!3d33.6518766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38df952e017d0acd%3A0xf20be4a76782ceaf!2sIslamabad%2C%20Pakistan!5e0!3m2!1sen!2s!4v1623456789012!5m2!1sen!2s"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3377.3206290047265!2d74.1949607!3d32.1686276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391f2900390470ff%3A0xbccbe00da672b2b3!2sMind%20Sphere!5e0!3m2!1sen!2s!4v1741429520551!5m2!1sen!2s"
                             width="100%"
                             height="100%"
                             style={{ border: 0 }}

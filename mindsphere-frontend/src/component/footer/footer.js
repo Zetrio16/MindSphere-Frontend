@@ -1,6 +1,6 @@
 import React from "react";
 import "./footer.css";
-import logo from '../../images/logo.png';
+import logo from '../../images/logo-i.png';
 import { Link } from "react-router-dom";
 
 
@@ -22,9 +22,9 @@ const Footer = () => {
                             <div className="col-lg-4 col-md-4 col-sm-12 footer-section">
                                 <h3>Follow Us</h3>
                                 <ul>
-                                    <li><a href="#">Instagram</a></li>
-                                    <li><a href="#">Facebook</a></li>
-                                    <li><a href="#">Location</a></li>
+                                    <li><a href="https://www.instagram.com/mindspheregrw">Instagram</a></li>
+                                    <li><a href="https://web.facebook.com/people/MindSphere/61568585522431">Facebook</a></li>
+                                    <li><a href="https://maps.app.goo.gl/s7J1Yge1Vfvpb9bX8">Location</a></li>
                                 </ul>
                             </div>
 
